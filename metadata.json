@@ -1,0 +1,6 @@
+{
+  "name": "Maju Stars Pre-School, Daycare & After-care",
+  "description": "Maju Stars Pre-School, Daycare and After-care Centre in Lenasia. Providing early childhood development, daycare, preschool, and after-care at 15 Benue St, Lenasia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
