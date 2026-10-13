@@ -76,7 +76,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
               {/* Main Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-fredoka text-[#2D1660] tracking-tight leading-[1.12]">
                 Inspiring Young Minds, <br className="hidden sm:inline" />
-                <span className="text-[#FA5B88]">Building Bright Futures!</span>
+                <span className="text-[#FA5B88] inline-block">Building Bright Futures for Them!</span>
               </h1>
 
               {/* Subtitle */}
