@@ -16,9 +16,11 @@ import {
   Smile,
   Shield,
   Sun,
-  Star
+  Star,
+  Bus,
+  ShieldCheck
 } from 'lucide-react';
-import { SCHOOL_INFO, IMAGES, PROGRAMS, TESTIMONIALS } from '../data/preschoolData';
+import { SCHOOL_INFO, IMAGES, PROGRAMS, TESTIMONIALS, TRANSPORT_DATA } from '../data/preschoolData';
 import { PageId } from '../types';
 
 interface HomePageProps {
@@ -47,7 +49,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
       </div>
 
       {/* HERO SECTION - Styled identically to the attached reference photo */}
-      <section className="relative bg-[#FAF7F2] pt-8 sm:pt-14 pb-20 lg:pb-28 overflow-hidden">
+      <section className="relative bg-[#FAF7F2] pt-8 sm:pt-14 pb-12 sm:pb-16 overflow-hidden">
         {/* Playful Doodles & Background Shapes */}
         <div className="absolute top-10 left-6 text-amber-400/80 pointer-events-none hidden sm:block">
           <Sun className="w-12 h-12 stroke-[1.5] animate-spin duration-1000" style={{ animationDuration: '30s' }} />
@@ -185,48 +187,136 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
             </div>
           </div>
         </div>
-
-        {/* Bottom organic curve wave divider */}
-        <div className="absolute bottom-0 left-0 right-0 leading-none overflow-hidden">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-10 sm:h-16 text-white fill-current">
-            <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,60 L1200,120 L0,120 Z" />
-          </svg>
-        </div>
       </section>
 
       {/* QUICK OPERATING INFO STRIP (Explicit user details) */}
       <section className="bg-white py-6 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-slate-700">
-            <div className="flex items-center gap-3 p-3 bg-purple-50/60 rounded-2xl border border-purple-100">
-              <div className="w-10 h-10 rounded-xl bg-[#5B34B2] text-white flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5 text-amber-300" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
+          {/* Quick Operating Details Strip */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-slate-700">
+            <div className="flex items-center gap-3 p-3.5 bg-purple-50/70 rounded-2xl border border-purple-100">
+              <div className="w-9 h-9 rounded-xl bg-[#5B34B2] text-white flex items-center justify-center shrink-0">
+                <MapPin className="w-4 h-4 text-amber-300" />
               </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-purple-900 block">Address in Lenasia</span>
-                <span className="text-sm font-bold text-slate-900">{SCHOOL_INFO.address}</span>
+              <div className="min-w-0">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-900 block truncate">Address in Lenasia</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 truncate block">{SCHOOL_INFO.address}</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-pink-50/60 rounded-2xl border border-pink-100">
-              <div className="w-10 h-10 rounded-xl bg-[#FA5B88] text-white flex items-center justify-center shrink-0">
-                <Phone className="w-5 h-5" />
+            <div className="flex items-center gap-3 p-3.5 bg-pink-50/70 rounded-2xl border border-pink-100">
+              <div className="w-9 h-9 rounded-xl bg-[#FA5B88] text-white flex items-center justify-center shrink-0">
+                <Phone className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-pink-900 block">Direct Telephone</span>
-                <a href={`tel:${SCHOOL_INFO.phoneClean}`} className="text-sm font-bold text-slate-900 hover:text-[#FA5B88]">
+              <div className="min-w-0">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-pink-900 block truncate">Direct Telephone</span>
+                <a href={`tel:${SCHOOL_INFO.phoneClean}`} className="text-xs sm:text-sm font-bold text-slate-900 hover:text-[#FA5B88] truncate block">
                   {SCHOOL_INFO.phone} (Call / WhatsApp)
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-amber-50/60 rounded-2xl border border-amber-100">
-              <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
-                <Clock className="w-5 h-5" />
+            <div className="flex items-center gap-3 p-3.5 bg-amber-50/70 rounded-2xl border border-amber-100">
+              <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+                <Clock className="w-4 h-4" />
               </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900 block">Operating Hours</span>
-                <span className="text-sm font-bold text-slate-900">{SCHOOL_INFO.operatingHoursText}</span>
+              <div className="min-w-0">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900 block truncate">Operating Hours</span>
+                <span className="text-xs sm:text-sm font-bold text-slate-900 truncate block">{SCHOOL_INFO.operatingHoursText}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* MAJOR FEATURED SHOWCASE: DOOR-TO-DOOR TRANSPORT (BIGGER, HIGHLY VISIBLE & NEW ENGAGING LAYOUT) */}
+          <div className="bg-gradient-to-br from-[#381E76] via-[#5B34B2] to-[#7B4BD6] text-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border-4 border-amber-300/30 relative overflow-hidden">
+            {/* Subtle background glow & decorative bus watermark */}
+            <div className="absolute -right-8 -bottom-8 w-60 h-60 bg-pink-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none hidden lg:block">
+              <Bus className="w-48 h-48 text-white" />
+            </div>
+
+            <div className="relative z-10">
+              {/* Badge & Top Row */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400 text-slate-950 text-xs font-black uppercase tracking-wider shadow-md">
+                  <Bus className="w-4 h-4 text-slate-950" />
+                  <span>DOOR-TO-DOOR SCHOOL TRANSPORT</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-amber-300 text-xs font-bold border border-white/20">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>{TRANSPORT_DATA.notice}</span>
+                </div>
+              </div>
+
+              {/* Headline & Description */}
+              <div className="max-w-3xl mb-6">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold font-fredoka text-white leading-tight mb-2">
+                  Safe, Reliable Door-to-Door & After-Care Commutes for Your Child
+                </h3>
+                <p className="text-purple-100 text-xs sm:text-sm md:text-base leading-relaxed">
+                  We provide dependable morning home pick-up and afternoon drop-offs directly to 15 Benue St, Lenasia. Operating with vetted, trusted drivers, safety booster seating, and real-time parent updates across 10 serviced areas.
+                </p>
+              </div>
+
+              {/* Route Pricing Grid - All 10 routes clearly displayed in an attractive cards layout */}
+              <div className="mb-6">
+                <div className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-3 flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>Monthly Transport Rates by Suburb / Area:</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                  {TRANSPORT_DATA.routes.map((route) => (
+                    <div
+                      key={route.id}
+                      className="bg-white/10 hover:bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/20 transition-all duration-150 flex flex-col justify-between"
+                    >
+                      <span className="text-xs font-semibold text-purple-100 block truncate">
+                        {route.area}
+                      </span>
+                      <div className="flex items-baseline justify-between mt-1 pt-1 border-t border-white/15">
+                        <span className="text-lg sm:text-xl font-bold font-fredoka text-amber-300">
+                          {route.priceFormatted}
+                        </span>
+                        <span className="text-[10px] text-purple-200">/month</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Safety Badges & Primary Actions */}
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-4 border-t border-white/20">
+                <div className="flex flex-wrap items-center gap-4 text-xs text-purple-100">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0" />
+                    <span>Vetted & Police-Cleared Drivers</span>
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0" />
+                    <span>Booster Seats & Individual Belts</span>
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Phone className="w-4 h-4 text-pink-300 shrink-0" />
+                    <span>Daily WhatsApp Driver Contact</span>
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                  <button
+                    onClick={() => onNavigate('registration')}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm rounded-full shadow-lg shadow-amber-400/25 transition-transform hover:scale-105 active:scale-95"
+                  >
+                    <span>Register Child with Transport</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                  <a
+                    href={`tel:${SCHOOL_INFO.phoneClean}`}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm rounded-full border border-white/25 transition-colors"
+                  >
+                    <Phone className="w-4 h-4 text-amber-300" />
+                    <span>Call 078 722 7449</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

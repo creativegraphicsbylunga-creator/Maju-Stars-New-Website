@@ -1,4 +1,4 @@
-import { ProgramItem, CalendarEvent } from '../types';
+import { ProgramItem, CalendarEvent, TransportRoute } from '../types';
 
 export const SCHOOL_INFO = {
   name: 'Maju Stars Pre-School, Daycare and After-care Centre',
@@ -424,3 +424,21 @@ export const FEE_TIERS_2027 = [
     includes: ['Optional school pick-up in Lenasia', 'Cooked lunch upon arrival', 'Supervised homework tutor assistance', 'Holiday care access included at discounted rate']
   }
 ];
+
+export const TRANSPORT_DATA = {
+  notice: 'Please note the following new prices as from the 1st of June',
+  effectiveDate: '1st of June',
+  description: 'Safe, punctual, and vetted door-to-door transport service operated by trusted drivers with booster seats and verified safety protocols.',
+  routes: [
+    { id: 'ext-10', area: 'Lenasia Ext 10', price: 450, priceFormatted: 'R450', popular: true },
+    { id: 'thembelihle-d', area: 'Thembelihle D Section', price: 450, priceFormatted: 'R450', popular: true },
+    { id: 'thembelihle-n', area: 'Thembelihle N Section', price: 450, priceFormatted: 'R450', popular: true },
+    { id: 'thembelihle-f', area: 'Thembelihle F Section', price: 500, priceFormatted: 'R500' },
+    { id: 'traderoute', area: 'Traderoute', price: 500, priceFormatted: 'R500' },
+    { id: 'ext-11', area: 'Lenasia Ext 11', price: 500, priceFormatted: 'R500' },
+    { id: 'patsing', area: 'Patsing', price: 500, priceFormatted: 'R500' },
+    { id: 'lehae', area: 'Lehae', price: 550, priceFormatted: 'R550' },
+    { id: 'ext-8', area: 'Lenasia Ext 8', price: 550, priceFormatted: 'R550' },
+    { id: 'ext-1-2-3', area: 'Lenasia Ext 1, 2, 3', price: 600, priceFormatted: 'R600' },
+  ] as TransportRoute[]
+};

@@ -13,9 +13,13 @@ import {
   ChevronRight,
   Music,
   Activity,
-  Palette
+  Palette,
+  Bus,
+  MapPin,
+  ShieldAlert,
+  Info
 } from 'lucide-react';
-import { PROGRAMS, SCHOOL_INFO } from '../data/preschoolData';
+import { PROGRAMS, SCHOOL_INFO, TRANSPORT_DATA } from '../data/preschoolData';
 import { PageId } from '../types';
 
 interface ProgramsPageProps {
@@ -221,6 +225,99 @@ export const ProgramsPage: React.FC<ProgramsPageProps> = ({ onNavigate, onOpenBo
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* SCHOOL TRANSPORT SERVICES & ROUTE PRICES */}
+      <section id="transport" className="max-w-7xl mx-auto px-4 sm:px-6 mb-20">
+        <div className="bg-gradient-to-br from-[#FAF5FF] via-white to-pink-50/50 rounded-3xl p-6 sm:p-10 border border-purple-200/80 shadow-md">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-purple-100">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-[#5B34B2] text-xs font-bold uppercase tracking-wider mb-2">
+                <Bus className="w-3.5 h-3.5" />
+                <span>School Transport Services</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-bold font-fredoka text-slate-900">
+                Safe Door-to-Door & School Pick-Up Routes
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-sm mt-1 max-w-2xl">
+                Reliable morning collection and afternoon drop-off for our little stars and after-care learners across Lenasia, Thembelihle, Lehae, and surrounding suburbs.
+              </p>
+            </div>
+
+            {/* Official Price Notice Pill */}
+            <div className="bg-amber-100/90 border border-amber-300 text-amber-900 px-4 py-2.5 rounded-2xl text-xs font-bold flex items-center gap-2 shrink-0">
+              <Info className="w-4 h-4 text-amber-700 shrink-0" />
+              <span>{TRANSPORT_DATA.notice}</span>
+            </div>
+          </div>
+
+          {/* Pricing Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 mb-8">
+            {TRANSPORT_DATA.routes.map((route) => (
+              <div
+                key={route.id}
+                className="bg-white p-4 rounded-2xl border border-purple-100 shadow-2xs hover:border-[#5B34B2] hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-1.5 text-slate-400 mb-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#5B34B2]" />
+                    <span className="text-[10px] uppercase font-bold tracking-wider">Pickup Route</span>
+                  </div>
+                  <h4 className="font-bold text-sm text-slate-900 leading-snug">
+                    {route.area}
+                  </h4>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-100 flex items-baseline justify-between">
+                  <span className="text-xl font-bold font-fredoka text-[#5B34B2]">
+                    {route.priceFormatted}
+                  </span>
+                  <span className="text-[10px] text-slate-500 font-medium">/ month</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Safety & Protocol Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-purple-100/80 text-xs text-slate-700">
+            <div className="flex items-start gap-2.5 p-3 bg-white rounded-xl border border-slate-200/80">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block text-slate-900">Vetted Local Drivers</strong>
+                <span className="text-slate-500 text-[11px]">Strict background checks and proven safety records in Lenasia.</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 p-3 bg-white rounded-xl border border-slate-200/80">
+              <Clock className="w-4 h-4 text-[#5B34B2] shrink-0 mt-0.5" />
+              <div>
+                <strong className="block text-slate-900">Punctual Schedules</strong>
+                <span className="text-slate-500 text-[11px]">Morning home pick-up & safe afternoon drop-off aligned with school bells.</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5 p-3 bg-white rounded-xl border border-slate-200/80">
+              <CheckCircle2 className="w-4 h-4 text-[#FA5B88] shrink-0 mt-0.5" />
+              <div>
+                <strong className="block text-slate-900">Safety Seatbelts & Boosters</strong>
+                <span className="text-slate-500 text-[11px]">Individual age-appropriate seating with care supervisor.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Footer */}
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-purple-100">
+            <span className="text-xs text-slate-500">
+              Need transport for a custom Lenasia address? Contact us directly on <strong>078 722 7449</strong>.
+            </span>
+            <button
+              onClick={() => onNavigate('registration')}
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#5B34B2] hover:bg-[#492795] text-white text-xs font-bold rounded-xl shadow-xs transition-colors shrink-0"
+            >
+              <Bus className="w-3.5 h-3.5" />
+              <span>Enroll Child with Transport</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </section>

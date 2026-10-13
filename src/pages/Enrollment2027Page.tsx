@@ -11,9 +11,10 @@ import {
   Users, 
   Award,
   DollarSign,
-  Info
+  Info,
+  Bus
 } from 'lucide-react';
-import { SCHOOL_INFO, FEE_TIERS_2027, FAQS } from '../data/preschoolData';
+import { SCHOOL_INFO, FEE_TIERS_2027, FAQS, TRANSPORT_DATA } from '../data/preschoolData';
 import { PageId } from '../types';
 
 interface Enrollment2027PageProps {
@@ -26,6 +27,7 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
   const [selectedProgram, setSelectedProgram] = useState<'baby' | 'toddler' | 'preschool' | 'aftercare'>('preschool');
   const [childrenCount, setChildrenCount] = useState<number>(1);
   const [includeTransport, setIncludeTransport] = useState<boolean>(false);
+  const [selectedTransportRoute, setSelectedTransportRoute] = useState<string>('ext-10');
   const [includeExtraMurals, setIncludeExtraMurals] = useState<boolean>(true);
 
   // Fast Slot Reservation
@@ -53,7 +55,8 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
     totalTuition = baseRate + additionalChildren * (baseRate * 0.9);
   }
 
-  const transportCost = includeTransport ? 450 * childrenCount : 0;
+  const activeTransportRoute = TRANSPORT_DATA.routes.find(r => r.id === selectedTransportRoute) || TRANSPORT_DATA.routes[0];
+  const transportCost = includeTransport ? activeTransportRoute.price * childrenCount : 0;
   const extraMuralsCost = includeExtraMurals ? 150 * childrenCount : 0;
   const monthlyTotal = totalTuition + transportCost + extraMuralsCost;
 
@@ -217,6 +220,46 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
             </div>
           ))}
         </div>
+
+        {/* 2027 TRANSPORT PRICE SCHEDULE ACCORDING TO OFFICIAL NOTICE */}
+        <div className="mt-8 bg-gradient-to-r from-purple-50 via-[#FAF7F2] to-pink-50 p-6 sm:p-8 rounded-3xl border border-purple-200 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-purple-200/80">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#5B34B2] text-white flex items-center justify-center shrink-0">
+                <Bus className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold font-fredoka text-slate-900">
+                  School Transport Monthly Rates
+                </h3>
+                <p className="text-xs text-slate-600">
+                  Safe, punctual door-to-door morning collection & afternoon drop-off
+                </p>
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold">
+              <Info className="w-3.5 h-3.5 shrink-0 text-amber-800" />
+              <span>{TRANSPORT_DATA.notice}</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {TRANSPORT_DATA.routes.map((route) => (
+              <div
+                key={route.id}
+                className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs hover:border-[#5B34B2] transition-colors"
+              >
+                <span className="text-[11px] font-bold text-slate-800 block truncate">
+                  {route.area}
+                </span>
+                <span className="text-base font-bold font-fredoka text-[#5B34B2] block mt-0.5">
+                  {route.priceFormatted}
+                  <span className="text-[10px] font-normal text-slate-500"> /mo</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* INTERACTIVE 2027 TUITION ESTIMATOR */}
@@ -289,7 +332,7 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2.5 pt-2">
                 <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer">
                   <input
                     type="checkbox"
@@ -297,8 +340,30 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
                     onChange={(e) => setIncludeTransport(e.target.checked)}
                     className="w-4 h-4 text-[#5B34B2] rounded-sm"
                   />
-                  <span>Add Lenasia Transport Route (+R450/m per child)</span>
+                  <span>Add School Transport Route</span>
                 </label>
+
+                {includeTransport && (
+                  <div className="pl-6 pt-1 space-y-1">
+                    <label className="block text-[11px] font-bold text-slate-600">
+                      Select Your Pickup Area:
+                    </label>
+                    <select
+                      value={selectedTransportRoute}
+                      onChange={(e) => setSelectedTransportRoute(e.target.value)}
+                      className="w-full px-3 py-2 text-xs border border-purple-200 rounded-xl bg-white focus:outline-hidden focus:border-[#5B34B2]"
+                    >
+                      {TRANSPORT_DATA.routes.map((route) => (
+                        <option key={route.id} value={route.id}>
+                          {route.area} ({route.priceFormatted}/mo)
+                        </option>
+                      ))}
+                    </select>
+                    <p className="text-[10px] text-slate-400">
+                      {TRANSPORT_DATA.notice}
+                    </p>
+                  </div>
+                )}
 
                 <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer">
                   <input
@@ -329,7 +394,7 @@ export const Enrollment2027Page: React.FC<Enrollment2027PageProps> = ({ onNaviga
                 </div>
                 {includeTransport && (
                   <div className="flex justify-between text-slate-700">
-                    <span>Lenasia Transport:</span>
+                    <span>Transport ({activeTransportRoute.area}):</span>
                     <strong>R{transportCost.toLocaleString()}</strong>
                   </div>
                 )}

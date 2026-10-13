@@ -74,6 +74,15 @@ export interface RegistrationFormData {
 
   // Transport & Extras
   transportNeeded: boolean;
+  transportRoute?: string;
   extraMurals: string[];
   notes: string;
+}
+
+export interface TransportRoute {
+  id: string;
+  area: string;
+  price: number;
+  priceFormatted: string;
+  popular?: boolean;
 }

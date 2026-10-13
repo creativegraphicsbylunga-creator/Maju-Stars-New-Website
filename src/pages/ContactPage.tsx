@@ -9,9 +9,10 @@ import {
   CheckCircle2, 
   Navigation, 
   Sparkles,
-  Calendar
+  Calendar,
+  Bus
 } from 'lucide-react';
-import { SCHOOL_INFO } from '../data/preschoolData';
+import { SCHOOL_INFO, TRANSPORT_DATA } from '../data/preschoolData';
 import { PageId } from '../types';
 
 interface ContactPageProps {
@@ -186,10 +187,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
               </div>
             </div>
 
-            <div className="space-y-2 text-xs text-slate-600 pt-1">
-              <div className="font-bold text-slate-800">Neighbourhood & School Pickup Zones:</div>
-              <p className="text-[11px] text-slate-500">
-                We safely collect after-care learners from primary schools across Lenasia including Ext 1, Ext 3, Ext 5, Ext 8, and Lenasia South.
+            <div className="space-y-2.5 text-xs text-slate-600 pt-2 border-t border-purple-100">
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-slate-800 flex items-center gap-1.5">
+                  <Bus className="w-3.5 h-3.5 text-[#5B34B2]" />
+                  <span>Serviced Transport Routes & Rates:</span>
+                </div>
+                <span className="text-[10px] text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded-full">
+                  From 1st June
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5 text-[11px]">
+                {TRANSPORT_DATA.routes.map((r) => (
+                  <div key={r.id} className="p-1.5 bg-white rounded-lg border border-slate-200/80 flex items-center justify-between">
+                    <span className="text-slate-700 truncate mr-1">{r.area}</span>
+                    <span className="font-bold text-[#5B34B2] shrink-0">{r.priceFormatted}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[10px] text-slate-500">
+                Morning home collection and afternoon drop-off. Strict vetting, booster seats, and live driver communication.
               </p>
             </div>
           </div>

@@ -17,9 +17,10 @@ import {
   Sparkles,
   Clock,
   ShieldCheck,
-  Check
+  Check,
+  Bus
 } from 'lucide-react';
-import { SCHOOL_INFO, PROGRAMS } from '../data/preschoolData';
+import { SCHOOL_INFO, PROGRAMS, TRANSPORT_DATA } from '../data/preschoolData';
 import { RegistrationFormData, PageId } from '../types';
 
 interface RegistrationPageProps {
@@ -66,6 +67,7 @@ export const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate, 
     medicalAidNumber: '',
 
     transportNeeded: false,
+    transportRoute: 'ext-10',
     extraMurals: ['Ball Skills', 'Art & Craft'],
     notes: ''
   });
@@ -587,17 +589,42 @@ export const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate, 
                       </select>
                     </div>
 
-                    <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-200">
-                      <input
-                        type="checkbox"
-                        id="transportCheck"
-                        checked={formData.transportNeeded}
-                        onChange={(e) => setFormData({ ...formData, transportNeeded: e.target.checked })}
-                        className="w-4 h-4 text-[#5B34B2] rounded-sm"
-                      />
-                      <label htmlFor="transportCheck" className="text-xs text-slate-700 font-semibold cursor-pointer">
-                        School Transport Required in Lenasia (Pick up / Drop off)
-                      </label>
+                    <div className="p-3.5 bg-purple-50/60 rounded-2xl border border-purple-200/80 space-y-2">
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          id="transportCheck"
+                          checked={formData.transportNeeded}
+                          onChange={(e) => setFormData({ ...formData, transportNeeded: e.target.checked })}
+                          className="w-4 h-4 text-[#5B34B2] rounded-sm"
+                        />
+                        <label htmlFor="transportCheck" className="text-xs text-slate-800 font-bold cursor-pointer flex items-center gap-1.5">
+                          <Bus className="w-4 h-4 text-[#5B34B2]" />
+                          <span>School Transport Required (Morning Pick-up / Afternoon Drop-off)</span>
+                        </label>
+                      </div>
+
+                      {formData.transportNeeded && (
+                        <div className="pt-2 pl-7 space-y-1.5 animate-in fade-in duration-150">
+                          <label className="block text-[11px] font-bold text-slate-700">
+                            Select Pickup / Drop-off Area:
+                          </label>
+                          <select
+                            value={formData.transportRoute}
+                            onChange={(e) => setFormData({ ...formData, transportRoute: e.target.value })}
+                            className="w-full px-3 py-2 text-xs border border-purple-200 rounded-xl bg-white focus:outline-hidden focus:border-[#5B34B2]"
+                          >
+                            {TRANSPORT_DATA.routes.map((route) => (
+                              <option key={route.id} value={route.id}>
+                                {route.area} — {route.priceFormatted} / month
+                              </option>
+                            ))}
+                          </select>
+                          <p className="text-[10px] text-purple-700 font-medium">
+                            {TRANSPORT_DATA.notice}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -718,6 +745,14 @@ export const RegistrationPage: React.FC<RegistrationPageProps> = ({ onNavigate, 
                 <div>
                   <span className="text-slate-400 text-[10px] block uppercase font-bold">Attendance:</span>
                   <strong className="text-[#5B34B2] capitalize">{formData.attendanceType.replace('-', ' ')}</strong>
+                </div>
+                <div>
+                  <span className="text-slate-400 text-[10px] block uppercase font-bold">School Transport:</span>
+                  <strong className="text-slate-900">
+                    {formData.transportNeeded
+                      ? `${TRANSPORT_DATA.routes.find(r => r.id === formData.transportRoute)?.area} (${TRANSPORT_DATA.routes.find(r => r.id === formData.transportRoute)?.priceFormatted}/mo)`
+                      : 'Not Required'}
+                  </strong>
                 </div>
               </div>
 
