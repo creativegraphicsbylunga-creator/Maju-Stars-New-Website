@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { SCHOOL_INFO } from '../data/preschoolData';
 import { PageId } from '../types';
+import { MajuStarsLogo } from './MajuStarsLogo';
 
 interface HeaderProps {
   currentPage: PageId;
@@ -88,20 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Brand / Logo lockup */}
         <button 
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-2.5 text-left group focus:outline-hidden"
+          className="flex items-center text-left group focus:outline-hidden transition-opacity hover:opacity-95"
+          aria-label="Maju Stars Pre-School Home"
         >
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#5B34B2] via-[#7B4BD6] to-[#FA5B88] flex items-center justify-center shadow-md shadow-purple-500/20 group-hover:scale-105 transition-transform duration-200">
-            <Sparkles className="w-6 h-6 text-yellow-300" />
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-baseline">
-              <span className="text-2xl font-bold tracking-tight text-[#5B34B2] font-fredoka">Maju</span>
-              <span className="text-2xl font-bold tracking-tight text-[#FA5B88] font-fredoka ml-1">Stars</span>
-            </div>
-            <span className="text-[10px] sm:text-[11px] font-semibold text-slate-500 tracking-wider uppercase -mt-1">
-              Pre-School · Daycare · After-Care
-            </span>
-          </div>
+          <MajuStarsLogo size="md" />
         </button>
 
         {/* Desktop Nav Links */}

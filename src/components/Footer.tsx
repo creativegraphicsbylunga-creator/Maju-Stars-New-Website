@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SCHOOL_INFO } from '../data/preschoolData';
 import { PageId } from '../types';
+import { MajuStarsLogo } from './MajuStarsLogo';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -31,17 +32,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBookTour }) =>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-purple-400/20">
           {/* Brand & Ethos */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#FA5B88] to-amber-300 flex items-center justify-center text-[#5B34B2] shadow-md shadow-purple-900/40">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-2xl font-bold font-fredoka text-white tracking-tight">Maju</span>
-                <span className="text-2xl font-bold font-fredoka text-[#FA5B88] ml-1">Stars</span>
-                <p className="text-[11px] text-purple-200 uppercase tracking-widest font-semibold">
-                  Pre-School · Daycare · After-Care
-                </p>
-              </div>
+            <div className="cursor-pointer" onClick={() => { onNavigate('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              <MajuStarsLogo variant="white" size="md" />
             </div>
 
             <p className="text-purple-100 text-xs sm:text-sm leading-relaxed">

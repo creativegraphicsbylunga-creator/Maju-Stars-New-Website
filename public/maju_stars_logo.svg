@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 84" width="360" height="84" fill="none">
+  <defs>
+    <!-- Facet Gradients for Star -->
+    <linearGradient id="starFacetLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF385" />
+      <stop offset="100%" stop-color="#FFC727" />
+    </linearGradient>
+    <linearGradient id="starFacetMid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC727" />
+      <stop offset="100%" stop-color="#FF9E00" />
+    </linearGradient>
+    <linearGradient id="starFacetDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9E00" />
+      <stop offset="100%" stop-color="#E85D04" />
+    </linearGradient>
+
+    <!-- Swoosh Gradient -->
+    <linearGradient id="swooshGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#48CAE4" />
+      <stop offset="40%" stop-color="#7B2CBF" />
+      <stop offset="75%" stop-color="#FA5B88" />
+      <stop offset="100%" stop-color="#FFB703" />
+    </linearGradient>
+
+    <!-- Star Glow -->
+    <radialGradient id="starHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFE066" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#FFE066" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="subtleShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#3C1A78" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap');
+    .brand-title-purple {
+      font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      fill: #5B34B2;
+    }
+    .brand-title-pink {
+      font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      fill: #FA5B88;
+    }
+    .brand-subtitle {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 9.5px;
+      letter-spacing: 2.6px;
+      fill: #64748B;
+    }
+  </style>
+
+  <!-- Left Icon Mark (x=42, y=42) -->
+  <g filter="url(#subtleShadow)">
+    <!-- Soft Backlight Halo -->
+    <circle cx="42" cy="42" r="36" fill="url(#starHalo)" />
+
+    <!-- Orbital Cosmic Swoosh -->
+    <path d="M 12 58 C 16 74, 48 76, 68 56 C 78 46, 76 28, 64 22" 
+          stroke="url(#swooshGrad)" 
+          stroke-width="4.5" 
+          stroke-linecap="round" 
+          fill="none" />
+
+    <!-- 3D Faceted Star Base -->
+    <!-- Points: Top(42,12), UpperRight(52,31), FarRight(71,34), LowRight(57,48), BotRight(62,68), BotMid(42,56), BotLeft(22,68), LowLeft(27,48), FarLeft(13,34), UpperLeft(32,31). Center(42,42) -->
+    <!-- Facet 1: Top-Left -->
+    <polygon points="42,12 42,42 32,31" fill="url(#starFacetLight)" />
+    <!-- Facet 2: Top-Right -->
+    <polygon points="42,12 52,31 42,42" fill="url(#starFacetMid)" />
+    <!-- Facet 3: Far-Right Top -->
+    <polygon points="52,31 71,34 42,42" fill="url(#starFacetLight)" />
+    <!-- Facet 4: Far-Right Bottom -->
+    <polygon points="71,34 57,48 42,42" fill="url(#starFacetDark)" />
+    <!-- Facet 5: Bottom-Right Top -->
+    <polygon points="57,48 62,68 42,42" fill="url(#starFacetMid)" />
+    <!-- Facet 6: Bottom-Right Inner -->
+    <polygon points="62,68 42,56 42,42" fill="url(#starFacetDark)" />
+    <!-- Facet 7: Bottom-Left Inner -->
+    <polygon points="42,56 22,68 42,42" fill="url(#starFacetDark)" />
+    <!-- Facet 8: Bottom-Left Bottom -->
+    <polygon points="22,68 27,48 42,42" fill="url(#starFacetMid)" />
+    <!-- Facet 9: Far-Left Bottom -->
+    <polygon points="27,48 13,34 42,42" fill="url(#starFacetDark)" />
+    <!-- Facet 10: Far-Left Top -->
+    <polygon points="13,34 32,31 42,42" fill="url(#starFacetLight)" />
+
+    <!-- Central Shimmer Star Sparkle -->
+    <polygon points="42,32 44.5,39.5 52,42 44.5,44.5 42,52 39.5,44.5 32,42 39.5,39.5" fill="#FFFFFF" opacity="0.9" />
+
+    <!-- Playful Orbital Diamond Sparkles -->
+    <!-- Top-Right Cyan Sparkle -->
+    <polygon points="74,18 75.5,22 79.5,23.5 75.5,25 74,29 72.5,25 68.5,23.5 72.5,22" fill="#48CAE4" />
+    <circle cx="74" cy="23.5" r="1" fill="#FFFFFF" />
+
+    <!-- Bottom-Left Pink Sparkle -->
+    <polygon points="12,62 13.5,65 16.5,66 13.5,67 12,70 10.5,67 7.5,66 10.5,65" fill="#FA5B88" />
+
+    <!-- Top-Left Gold Sparkle -->
+    <polygon points="18,17 19,19.5 21.5,20.5 19,21.5 18,24 17,21.5 14.5,20.5 17,19.5" fill="#FFC727" />
+  </g>
+
+  <!-- Typography Lockup -->
+  <!-- Brand Name: mAJU STARS -->
+  <text x="96" y="47" class="brand-title-purple">mAJU</text>
+  <text x="206" y="47" class="brand-title-pink">STARS</text>
+
+  <!-- Little Golden Crown/Star Accent above STARS -->
+  <g transform="translate(328, 20) scale(0.65)">
+    <polygon points="10,2 12.5,7 18,7.8 14,11.8 15,17.2 10,14.5 5,17.2 6,11.8 2,7.8 7.5,7" fill="#FFB703" />
+    <circle cx="10" cy="9.5" r="1.5" fill="#FFF" />
+  </g>
+
+  <!-- Subtitle Descriptor: PRE-SCHOOL · DAYCARE · AFTER-CARE -->
+  <text x="97" y="67" class="brand-subtitle">PRE-SCHOOL · DAYCARE · AFTER-CARE</text>
+
+  <!-- Cheerful Underline Accent Pill -->
+  <rect x="97" y="73" width="46" height="3" rx="1.5" fill="#5B34B2" opacity="0.85" />
+  <rect x="148" y="73" width="34" height="3" rx="1.5" fill="#FA5B88" opacity="0.9" />
+  <rect x="187" y="73" width="22" height="3" rx="1.5" fill="#FFB703" opacity="0.95" />
+  <rect x="214" y="73" width="14" height="3" rx="1.5" fill="#48CAE4" opacity="0.95" />
+</svg>
