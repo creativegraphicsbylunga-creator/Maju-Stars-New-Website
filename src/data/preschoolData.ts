@@ -1,4 +1,8 @@
 import { ProgramItem, CalendarEvent, TransportRoute } from '../types';
+import heroChildImg from '../assets/images/maju_stars_happy_child_1791886480589.jpg';
+import blocksPlayImg from '../assets/images/preschool_blocks_play_1791610492461.jpg';
+import readingStoryImg from '../assets/images/preschool_reading_story_1791610502428.jpg';
+import outdoorPlayImg from '../assets/images/preschool_outdoor_kids_1791610513945.jpg';
 
 export const SCHOOL_INFO = {
   name: 'Maju Stars Pre-School, Daycare and After-care Centre',
@@ -31,10 +35,10 @@ export const SCHOOL_INFO = {
 };
 
 export const IMAGES = {
-  heroChild: '/src/assets/images/maju_stars_happy_child_1791886480589.jpg',
-  blocksPlay: '/src/assets/images/preschool_blocks_play_1791610492461.jpg',
-  readingStory: '/src/assets/images/preschool_reading_story_1791610502428.jpg',
-  outdoorPlay: '/src/assets/images/preschool_outdoor_kids_1791610513945.jpg'
+  heroChild: heroChildImg,
+  blocksPlay: blocksPlayImg,
+  readingStory: readingStoryImg,
+  outdoorPlay: outdoorPlayImg
 };
 
 export const PROGRAMS: ProgramItem[] = [

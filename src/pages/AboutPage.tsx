@@ -73,7 +73,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBookTour
               src={IMAGES.readingStory}
               alt="Teacher reading with smiling preschool children"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/images/reading_story.jpg')) {
+                  target.src = '/images/reading_story.jpg';
+                }
+              }}
             />
           </div>
         </div>
@@ -215,7 +220,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBookTour
               src={IMAGES.outdoorPlay}
               alt="Outdoor play area and children running safely"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('/images/outdoor_kids.jpg')) {
+                  target.src = '/images/outdoor_kids.jpg';
+                }
+              }}
             />
           </div>
         </div>

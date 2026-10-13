@@ -176,12 +176,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
               </div>
 
               {/* Child photo container */}
-              <div className="relative z-10 w-[300px] h-[360px] sm:w-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative z-10 w-[300px] h-[360px] sm:w-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-purple-50">
                 <img
-                  src="/src/assets/images/maju_stars_happy_child_1791886480589.jpg"
+                  src={IMAGES.heroChild}
                   alt="Cheerful Maju Stars preschool child with colorful painted hands smiling"
                   className="w-full h-full object-cover object-center"
-                  referrerPolicy="no-referrer"
+                  loading="eager"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/images/hero_child.jpg')) {
+                      target.src = '/images/hero_child.jpg';
+                    }
+                  }}
                 />
               </div>
             </div>
@@ -465,12 +471,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
           <div className="relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
               {/* Photo 1: Toddlers building blocks */}
-              <div className="relative rounded-3xl overflow-hidden shadow-md group">
+              <div className="relative rounded-3xl overflow-hidden shadow-md group bg-purple-50">
                 <img
                   src={IMAGES.blocksPlay}
                   alt="Preschool kids playing with blocks in classroom"
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/images/blocks_play.jpg')) {
+                      target.src = '/images/blocks_play.jpg';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4">
                   <span className="text-white text-xs font-bold">Sensory & Fine Motor Mastery</span>
@@ -478,12 +489,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
               </div>
 
               {/* Photo 2: Storytime reading corner */}
-              <div className="relative rounded-3xl overflow-hidden shadow-md group">
+              <div className="relative rounded-3xl overflow-hidden shadow-md group bg-purple-50">
                 <img
                   src={IMAGES.readingStory}
                   alt="Teacher reading book to young children"
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/images/reading_story.jpg')) {
+                      target.src = '/images/reading_story.jpg';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4">
                   <span className="text-white text-xs font-bold">Phonics & Story Circles</span>
@@ -491,12 +507,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
               </div>
 
               {/* Photo 3: Outdoor playground joy */}
-              <div className="relative rounded-3xl overflow-hidden shadow-md group">
+              <div className="relative rounded-3xl overflow-hidden shadow-md group bg-purple-50">
                 <img
                   src={IMAGES.outdoorPlay}
                   alt="Happy preschool kids playing outdoors on grass"
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('/images/outdoor_kids.jpg')) {
+                      target.src = '/images/outdoor_kids.jpg';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4">
                   <span className="text-white text-xs font-bold">Healthy Outdoor Play</span>
