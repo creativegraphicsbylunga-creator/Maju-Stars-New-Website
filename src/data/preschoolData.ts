@@ -31,7 +31,7 @@ export const SCHOOL_INFO = {
 };
 
 export const IMAGES = {
-  heroChild: '/src/assets/images/hero_preschool_happy_child_1791610480329.jpg',
+  heroChild: '/src/assets/images/maju_stars_happy_child_1791886480589.jpg',
   blocksPlay: '/src/assets/images/preschool_blocks_play_1791610492461.jpg',
   readingStory: '/src/assets/images/preschool_reading_story_1791610502428.jpg',
   outdoorPlay: '/src/assets/images/preschool_outdoor_kids_1791610513945.jpg'

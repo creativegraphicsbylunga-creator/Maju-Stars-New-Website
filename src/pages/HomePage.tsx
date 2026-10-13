@@ -178,8 +178,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBookTour }
               {/* Child photo container */}
               <div className="relative z-10 w-[300px] h-[360px] sm:w-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
-                  src={IMAGES.heroChild}
-                  alt="Cheerful preschool child with colorful painted hands smiling"
+                  src="/src/assets/images/maju_stars_happy_child_1791886480589.jpg"
+                  alt="Cheerful Maju Stars preschool child with colorful painted hands smiling"
                   className="w-full h-full object-cover object-center"
                   referrerPolicy="no-referrer"
                 />
